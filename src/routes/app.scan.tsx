@@ -34,7 +34,7 @@ type Phase = "idle" | "scanning" | "done";
 function Scan() {
   const [preview, setPreview] = useState<string | null>(null);
   const [phase, setPhase] = useState<Phase>("idle");
-  const [form, setForm] = useState<Omit<Receipt, "id">>(samples[0]);
+  const [form, setForm] = useState<Omit<Receipt, "id">>(samples[0]!);
   const navigate = useNavigate();
 
   const onFile = (f?: File) => {
@@ -42,7 +42,7 @@ function Scan() {
     setPreview(URL.createObjectURL(f));
     setPhase("scanning");
     setTimeout(() => {
-      setForm(samples[Math.floor(Math.random() * samples.length)]);
+      setForm(samples[Math.floor(Math.random() * samples.length)]!);
       setPhase("done");
       toast.success("AI selesai membaca nota (simulasi)");
     }, 2000);

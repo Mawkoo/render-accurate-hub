@@ -134,7 +134,7 @@ export function EmptyState({ title, desc, action }: { title: string; desc?: stri
   );
 }
 
-export function HashRow({ label, value }: { label: string; value?: string }) {
+export function HashRow({ label, value }: { label: string; value?: string | undefined }) {
   return (
     <div className="flex flex-col gap-0.5 border-b py-2.5 last:border-0 sm:flex-row sm:items-center sm:justify-between">
       <span className="text-sm text-muted-foreground">{label}</span>

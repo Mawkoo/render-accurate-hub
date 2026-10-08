@@ -8,10 +8,10 @@ export interface NavItem {
   to: string;
   label: string;
   icon: LucideIcon;
-  exact?: boolean;
+  exact?: boolean | undefined;
 }
 
-function NavList({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => void }) {
+function NavList({ items, onNavigate }: { items: NavItem[]; onNavigate?: (() => void) | undefined }) {
   return (
     <nav className="flex flex-col gap-1">
       {items.map((it) => (
@@ -19,7 +19,7 @@ function NavList({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => v
           key={it.to}
           to={it.to}
           onClick={onNavigate}
-          activeOptions={{ exact: it.exact }}
+          activeOptions={{ exact: it.exact ?? false }}
           className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-sidebar-foreground/80 transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
           activeProps={{ className: "!bg-sidebar-primary !text-sidebar-primary-foreground font-semibold" }}
         >
