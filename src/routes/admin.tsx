@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Activity, BarChart3, Cell as CellIcon, FileText, Repeat, ShieldCheck } from "lucide-react";
+import { Activity, BarChart3, FileText, Repeat, ShieldCheck } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AppShell } from "@/components/nc/AppShell";
 import { ChartCard, PageHeader, StatCard } from "@/components/nc/ui";
 import { adminStats, dummyActivity } from "@/data/dummy";
 
-void CellIcon;
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
