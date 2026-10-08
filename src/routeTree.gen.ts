@@ -10,33 +10,147 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as VerifyRouteImport } from './routes/verify'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppScanRouteImport } from './routes/app.scan'
+import { Route as AppTransferIdRouteImport } from './routes/app.transfer.$id'
+import { Route as AppWarrantiesIndexRouteImport } from './routes/app.warranties.index'
+import { Route as AppWarrantiesIdRouteImport } from './routes/app.warranties.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyRoute = VerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppScanRoute = AppScanRouteImport.update({
+  id: '/scan',
+  path: '/scan',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTransferIdRoute = AppTransferIdRouteImport.update({
+  id: '/transfer/$id',
+  path: '/transfer/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWarrantiesIndexRoute = AppWarrantiesIndexRouteImport.update({
+  id: '/warranties/',
+  path: '/warranties/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWarrantiesIdRoute = AppWarrantiesIdRouteImport.update({
+  id: '/warranties/$id',
+  path: '/warranties/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/verify': typeof VerifyRoute
+  '/app/scan': typeof AppScanRoute
+  '/app/': typeof AppIndexRoute
+  '/app/transfer/$id': typeof AppTransferIdRoute
+  '/app/warranties/$id': typeof AppWarrantiesIdRoute
+  '/app/warranties/': typeof AppWarrantiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
+  '/verify': typeof VerifyRoute
+  '/app/scan': typeof AppScanRoute
+  '/app': typeof AppIndexRoute
+  '/app/transfer/$id': typeof AppTransferIdRoute
+  '/app/warranties/$id': typeof AppWarrantiesIdRoute
+  '/app/warranties': typeof AppWarrantiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/verify': typeof VerifyRoute
+  '/app/scan': typeof AppScanRoute
+  '/app/': typeof AppIndexRoute
+  '/app/transfer/$id': typeof AppTransferIdRoute
+  '/app/warranties/$id': typeof AppWarrantiesIdRoute
+  '/app/warranties/': typeof AppWarrantiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/app'
+    | '/login'
+    | '/verify'
+    | '/app/scan'
+    | '/app/'
+    | '/app/transfer/$id'
+    | '/app/warranties/$id'
+    | '/app/warranties/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/login'
+    | '/verify'
+    | '/app/scan'
+    | '/app'
+    | '/app/transfer/$id'
+    | '/app/warranties/$id'
+    | '/app/warranties'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/app'
+    | '/login'
+    | '/verify'
+    | '/app/scan'
+    | '/app/'
+    | '/app/transfer/$id'
+    | '/app/warranties/$id'
+    | '/app/warranties/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  VerifyRoute: typeof VerifyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +162,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/scan': {
+      id: '/app/scan'
+      path: '/scan'
+      fullPath: '/app/scan'
+      preLoaderRoute: typeof AppScanRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/transfer/$id': {
+      id: '/app/transfer/$id'
+      path: '/transfer/$id'
+      fullPath: '/app/transfer/$id'
+      preLoaderRoute: typeof AppTransferIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/warranties/': {
+      id: '/app/warranties/'
+      path: '/warranties'
+      fullPath: '/app/warranties/'
+      preLoaderRoute: typeof AppWarrantiesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/warranties/$id': {
+      id: '/app/warranties/$id'
+      path: '/warranties/$id'
+      fullPath: '/app/warranties/$id'
+      preLoaderRoute: typeof AppWarrantiesIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppScanRoute: typeof AppScanRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppTransferIdRoute: typeof AppTransferIdRoute
+  AppWarrantiesIdRoute: typeof AppWarrantiesIdRoute
+  AppWarrantiesIndexRoute: typeof AppWarrantiesIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppScanRoute: AppScanRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppTransferIdRoute: AppTransferIdRoute,
+  AppWarrantiesIdRoute: AppWarrantiesIdRoute,
+  AppWarrantiesIndexRoute: AppWarrantiesIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
+  VerifyRoute: VerifyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
